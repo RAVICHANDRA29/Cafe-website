@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Josefin+Sans:wght@300;400;600;700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    @apply font-serif text-ink bg-cream-100 dark:bg-dark-bg dark:text-dark-text;
+    background-image:
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-sage-400 ring-offset-2 dark:ring-offset-dark-bg;
+  }
+
+  ::-webkit-scrollbar       { width: 5px; }
+  ::-webkit-scrollbar-track { @apply bg-cream-200 dark:bg-dark-surface; }
+  ::-webkit-scrollbar-thumb { @apply bg-sage-300 dark:bg-sage-700 rounded-full; }
+
+  ::selection { @apply bg-sage-100 dark:bg-sage-800 text-ink dark:text-dark-text; }
+}
+
+@layer components {
+  .ornament {
+    @apply flex items-center gap-4 my-2;
+  }
+  .ornament::before,
+  .ornament::after {
+    content: '';
+    @apply flex-1 h-px bg-sage-200 dark:bg-dark-border;
+  }
+
+  .card-warm {
+    @apply bg-cream-50 dark:bg-dark-card border border-sage-200/60 dark:border-dark-border rounded-xl shadow-soft;
+  }
+
+  .stamp {
+    @apply inline-block font-sans text-xs font-semibold tracking-[0.2em] uppercase
+           border border-current px-3 py-1 rounded-sm opacity-80;
+  }
+
+  .btn-sage {
+    @apply inline-flex items-center gap-2 rounded-full bg-sage-700 dark:bg-sage-600 px-5 py-2.5
+           font-sans text-xs font-semibold tracking-wide text-white
+           transition-all duration-200 hover:bg-sage-600 dark:hover:bg-sage-500 hover:shadow-md
+           focus-visible:ring-2 focus-visible:ring-sage-400 focus-visible:ring-offset-2;
+  }
+}
